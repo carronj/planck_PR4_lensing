@@ -1,0 +1,12 @@
+# Planck PR4(NPIPE) release: lensing GMV-based likelihood, marginalized over the CMB power spectra
+# -- Native python .dataset-based implementation
+
+# CMB marginalized likelihood (no nuisance parameters)
+
+path: null
+dataset_file: data_pr4/pp_consext8_npipe_smicaed_TiPi_jTP_pre30T_kfilt_rdn0cov_PS1_CMBmarged.dataset
+aliases: [lensing]
+# Speed in evaluations/second
+speed: 90
+
+params:

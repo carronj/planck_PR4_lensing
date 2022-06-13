@@ -1,0 +1,27 @@
+# Planck PR4(NPIPE) release:  lensing GMV-based likelihood
+# -- Native python .dataset-based implementation
+
+# Be careful with parameter naming: here A_planck is the same parameter as used by other Planck likelihoods
+# and hence has the same name. When the parameter is not shared, it should be distinctive - avoiding name
+# collisions is currently up to the user.
+
+path: null
+dataset_file: data_pr4/pp_consext8_npipe_smicaed_TiPi_jTP_pre30T_kfilt_rdn0cov_PS1.dataset
+# Aliases for automatic covariance matrix
+aliases: [lensing]
+# Speed in evaluations/second
+speed: 50
+
+params:
+  A_planck:
+    prior:
+      dist: norm
+      loc: 1
+      scale: 0.0025
+    ref:
+      dist: norm
+      loc: 1
+      scale: 0.002
+    proposal: 0.0005
+    latex: y_\mathrm{cal}
+    renames: calPlanck
