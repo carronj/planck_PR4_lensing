@@ -1,0 +1,20 @@
+like_approx = gaussian
+fields_use = P
+fields_required = P
+binned = T
+nbins= 9 
+use_min= 1 
+use_max= 9 
+cl_lmin = 2
+cl_lmax = 2500
+
+cl_hat_file = PP_consext8_npipe_smicaed_Ponly_kfilt_rdn0cov_bandpowers.dat
+
+bin_window_files = PP_consext8_npipe_smicaed_Ponly_kfilt_rdn0cov_window/window%u.dat
+bin_window_in_order = PP
+bin_window_out_order = PP
+
+covmat_cl = PP
+covmat_fiducial = PP_consext8_npipe_smicaed_Ponly_kfilt_rdn0cov_cov.dat
+
+calibration_param = planck_calib.paramnames
