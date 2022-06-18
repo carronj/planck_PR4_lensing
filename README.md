@@ -10,5 +10,10 @@ See [this paper](https://arxiv.org/abs/2007.04997) for the Planck NPIPE maps.
 
 and [this one](https://arxiv.org/abs/2005.05290) for Cobaya.
 
+Install with
+
+    pip install -e ./ [--user]
+
+
 ![fig](./planckpr4lensing/sigma8om_updated_with_BAO.jpg)
 
