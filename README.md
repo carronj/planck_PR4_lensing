@@ -6,7 +6,7 @@ These are slightly more powerful (up to 20%) than the corresponding ones of the 
 
 See [the paper](https://arxiv.org/abs/2206.07773) for details.
 
-MCMC chains are available [here](https://github.com/carronj/planck_PR4_lensing/releases/tag/Chains)
+MCMC chains are available [here](https://github.com/carronj/planck_PR4_lensing/releases/tag/Data)
 
 See [this paper](https://arxiv.org/abs/2007.04997) for the Planck NPIPE maps and [this one](https://arxiv.org/abs/2005.05290) for Cobaya.
 
