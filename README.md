@@ -8,6 +8,8 @@ See [the paper](https://arxiv.org/abs/2206.07773) for details.
 
 MCMC chains and 2018-like PR4 lensing maps are available [here](https://github.com/carronj/planck_PR4_lensing/releases/tag/Data)
 
+More maps together with simulations available on NERSC at $CFS/cmb/data/planck2020/PR4_lensing/
+
 See [this paper](https://arxiv.org/abs/2007.04997) for the Planck NPIPE maps and [this one](https://arxiv.org/abs/2005.05290) for Cobaya.
 
 Install with
