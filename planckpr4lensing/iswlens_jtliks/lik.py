@@ -279,7 +279,7 @@ class cobaya_jtlik(jt_lik):
         self._uniformw = _uniformw
         self.w_ptbmmc=w_ptbmmc # set bmmc to one if not set (very poorly constrained and small enough anyways)
         self.force_PR3TT = forcePR3TT
-
+        self.verbose = verbose
         self.initialize()
         self.cobaya_type=cobaya_type
         self.calibration_param = 'A_planck'
@@ -404,9 +404,9 @@ class cobaya_jtlik(jt_lik):
         assert len(self.meas) == Ntot, (len(self.meas), Ntot)
         assert cov.shape == (Ntot, Ntot)
         assert lmaxtt == lmaxtp and lmaxpp == lmaxtt
-        print("tt tp pp Nbins ", Ntt, Npt, Npp)
-        print("lmins ", lmintt, lmiNpt, lminpp)
-        print("lmaxs ", lmaxtt, lmaxtp, lmaxpp)
+        print("ISWlensing: tt tp pp Nbins ", Ntt, Npt, Npp)
+        print("ISWlensing: lmins ", lmintt, lmiNpt, lminpp)
+        print("ISWlensing: lmaxs ", lmaxtt, lmaxtp, lmaxpp)
 
         lmax_sky = 118
 
@@ -453,7 +453,8 @@ class cobaya_jtlik(jt_lik):
                         this_cov *= self.rescalcovs.get(s, 1.)
                         cov[slics1, slics2] = this_cov
                         cov[slics2, slics1] = this_cov.T
-                        print('%s-%s filled in '%(Ns1, Ns2) + s + ' cov from ' + os.path.dirname(fn))
+                        if self.verbose:
+                            print('ISWlensing %s-%s filled in '%(Ns1, Ns2) + s + ' cov from ' + os.path.dirname(fn))
 
         # reads available responses:
         self.dRdlncls = {}
@@ -461,7 +462,8 @@ class cobaya_jtlik(jt_lik):
         for fn in fns:
             spec = os.path.basename(fn).replace('dRdlncls_', '').replace('.txt', '')
             self.dRdlncls[spec] = np.loadtxt(fn)
-            print('loaded ' + fn + ' into key ' + spec)
+            if self.verbose:
+                print('loaded ' + fn + ' into key ' + spec)
 
 
         self.w_pt_resp = False # This will be instantied later
@@ -491,7 +493,8 @@ class cobaya_jtlik(jt_lik):
                         bars_dict[s.lower()][ls_toreplace - lmin, :] = this_resp[ls_toreplace, :lmax_sky+1] * oneovercl(thisDlfid)
                     else:
                         bars_dict[s.lower()][ls_toreplace - lmin, :] = this_resp[ls_toreplace, :lmax_sky+1] * oneovercl(thisDlfid) #otherwise undefined
-                    print(" %s-%s adapted binning %s array from "%(ls_toreplace[0], ls_toreplace[-1], s) + os.path.dirname(fn))
+                    if self.verbose:
+                        print(" %s-%s adapted binning %s array from "%(ls_toreplace[0], ls_toreplace[-1], s) + os.path.dirname(fn))
                 setattr(self, 'bar' + s.lower(), bars_dict[s.lower()]) #hack
                 new_pred = getattr(self, '_bpred' + s.lower())(CLS_FID)
                 bars_dict[s.lower()] *= np.outer(1./new_pred, np.ones(lmax_sky+1)) # rescaling to get unit cl response to fiducial
@@ -534,11 +537,11 @@ class cobaya_jtlik(jt_lik):
 
         self.Rfid = np.loadtxt(self.folder + '/Rfid.txt')
         self.w_pt_resp = np.all([spec in self.dRdlncls.keys() for spec in self._specsforresp()])
-        print("OK for resp calc" * self.w_pt_resp)
+        print("ISWlensing: OK for resp calc" * self.w_pt_resp)
         if self.w_pt_resp:
             Rtest = np.sum([np.sum(self.dRdlncls[s], axis=1) for s in self._specsforresp()], axis=0)
             assert np.allclose(self.Rfid[:len(Rtest)], Rtest, rtol=1e-3)
-            print('Rfid test ok')
+            print('ISWlensing: Rfid test ok')
             self.Rfid = Rtest
 
 
@@ -715,7 +718,7 @@ class cobaya_jtlikPRXpp(cobaya_jtlik):
         PP_fid = self._bpredpp(CLS_FID) * self.PP_fid # should be 1e-4 close to previous
         assert np.allclose(PP_fid, self.PP_fid, rtol=1e-3)
 
-        if not np.allclose(np.array([self.meas[-2], self.meas[-1]]), Ahat[:2], rtol=0.02):
+        if not np.allclose(np.array([self.meas[-2], self.meas[-1]]), Ahat[:2], rtol=0.02) and verbose:
             print(np.array([self.meas[-2], self.meas[-1]]))
             print(Ahat[:2])
             #assert 0
