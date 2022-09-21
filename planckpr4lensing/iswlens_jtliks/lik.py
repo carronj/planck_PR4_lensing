@@ -343,7 +343,8 @@ class cobaya_jtlik(jt_lik):
             Ntt_PR3 = ls_tt_PR3.size # Number of TT multipoles to replace with PR3
             folder_PR3 = self.folder.replace(self.prefix,'jtlik_data_lmax99_PR3commander')
             if self.prefix != 'jtlik_data_lmax100':
-                print("*** Forcing PR3 TT bandpowers")
+                if self.verbose:
+                    print("ISWLensing: using PR3 TT on %s-%s "%(ls_tt_PR3[0], ls_tt_PR3[-1]))
             CDER_resp = np.loadtxt(folder_PR3 + '/TT_resp.txt')
             fn_PLA = os.path.join(os.path.dirname(planckpr4lensing.__file__), 'data_pr4', 'iswliks', 'COM_PowerSpect_CMB-TT-full_R3.01.txt')
             l_PLA, Dl_PLA, _, _ = np.loadtxt(fn_PLA).transpose()
@@ -622,7 +623,7 @@ class cobaya_jtlik(jt_lik):
         Ntt, Npt, Npp = Ns['tt'], Ns['pt'], Ns['pp']
 
         if self.custom_covs and not self._uniformw:
-            print("rebinning using inverse covariance weighting ", Ntt, Npt, Npp)
+            print("ISWlensing: rebinning using inverse covariance weighting ", Ntt, Npt, Npp)
             #binwei = 1./np.diag(self.cov)
             binwei = []
             for xy in ['tt', 'pt', 'pp']:
@@ -630,7 +631,7 @@ class cobaya_jtlik(jt_lik):
                 binwei.append(np.sum(covi, axis=1))
             binwei = np.concatenate(binwei)
         else:
-            print("rebinning with uniform weights ", Ntt, Npt, Npp)
+            print("ISWlensing: rebinning with uniform weights ", Ntt, Npt, Npp)
             binwei = np.copy(self.barrs * self.Dfids)  # here this is just uniform weighting !!
 
         # unit sum weights:
