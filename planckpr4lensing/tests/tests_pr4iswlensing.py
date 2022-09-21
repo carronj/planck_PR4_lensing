@@ -14,7 +14,7 @@ class LikeTest(unittest.TestCase):
     def test_cobaya(self):
         from cobaya.model import get_model
         chi2s = []
-        for name in ['planckpr4lensing.planckpr4iswlensing.pt_mtt', 'planckpr4lensing.planckpr4iswlensing.pt_mtt_mpp']:
+        for name in ['planckpr4lensing.planckpr4iswlensing.PlanckPR4ISWLensingTT', 'planckpr4lensing.planckpr4iswlensing.PlanckPR4ISWLensingTTPP']:
             info = {'likelihood': {name: None},
                     'theory': {'camb': {"extra_args": {"lens_potential_accuracy": 1,
                                                        "halofit_version":'mead'}, 'stop_at_error': True}},
@@ -32,13 +32,13 @@ class LikeTest(unittest.TestCase):
         return chi2s
 
     def test_indep(self):
-        from planckpr4lensing.planckpr4iswlensing import pt_mtt, pt_mtt_mpp
+        from planckpr4lensing.planckpr4iswlensing import PlanckPR4ISWLensingTT, PlanckPR4ISWLensingTTPP
         from planckpr4lensing.planckpr4iswlensing import lik
         from copy import deepcopy
         cls_fi = deepcopy(lik.CLS_FID)
         cls_fi['tt'] *= 1.01
-        lik_pt_mtt = pt_mtt()
-        lik_pt_mtt_mpp = pt_mtt_mpp()
+        lik_pt_mtt = PlanckPR4ISWLensingTT()
+        lik_pt_mtt_mpp = PlanckPR4ISWLensingTTPP()
         chi2_mtt = lik_pt_mtt.mylik.get_chi2_tt_pt_mtt(cls_fi)
         chi2_mtt_mpp = lik_pt_mtt_mpp.mylik.get_chi2_tt_pt_pp_mtt_mpp(cls_fi)
         chi2_pp = lik_pt_mtt_mpp.mylik.get_chi2_pp(cls_fi)

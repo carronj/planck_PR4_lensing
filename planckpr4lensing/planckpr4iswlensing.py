@@ -4,7 +4,7 @@ from cobaya.likelihood import Likelihood
 npipe_prefix = 'jtlik_data_lmax99_PR4_July25'
 PR3_T, verbose = True, False
 
-class pt_mtt(Likelihood):
+class PlanckPR4ISWLensingTT(Likelihood):
 
     def initialize(self):
         mylik = lik.cobaya_jtlikPRXpp(X=4, prefix=npipe_prefix, cobaya_type='tt_pt_mtt', force_PR3TT=PR3_T, verbose=verbose)
@@ -17,7 +17,7 @@ class pt_mtt(Likelihood):
         self.mylik.provider = self.provider
         return self.mylik.logp(**params_values)
 
-class pt_mtt_mpp(Likelihood):
+class PlanckPR4ISWLensingTTPP(Likelihood):
 
     def initialize(self):
         mylik = lik.cobaya_jtlikPRXpp(X=4, prefix=npipe_prefix, cobaya_type='tt_pt_pp_mtt_mpp', force_PR3TT=PR3_T, verbose=verbose)
