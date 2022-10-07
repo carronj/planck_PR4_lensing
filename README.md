@@ -1,5 +1,5 @@
 # planck_PR4_lensing
-Planck PR4 (NPIPE) lensing likelihoods, by J. Carron, M. Mirmelstein and A. Lewis, as well as the Planck PR4 ISW-lensing likelihoods by J. Carron, G. Fabbian and A. Lewis 
+Planck PR4 (NPIPE) lensing likelihoods, by J. Carron, M. Mirmelstein and A. Lewis, together with the Planck PR4 ISW-lensing likelihoods by J. Carron, G. Fabbian and A. Lewis 
 
 This repository contains the Planck lensing and ISW-lensing likelihoods built from Planck PR4(NPIPE) data, in a Cobaya-friendly format.
 The lensing likelihoods are slightly more powerful (up to 20%) than the corresponding ones of the PR3 (2018) Planck release.
@@ -20,4 +20,5 @@ Install with
 
 
 ![fig](./planckpr4lensing/sigma8om_updated_with_BAO.jpg)
+![fig](./planckpr4lensing/ISWlensing.jpg)
 
