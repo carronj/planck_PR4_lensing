@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/502841267.svg)](https://zenodo.org/badge/latestdoi/502841267)
+
 # planck_PR4_lensing
 Planck PR4 (NPIPE) lensing likelihoods, by J. Carron, M. Mirmelstein and A. Lewis, together with the Planck PR4 ISW-lensing likelihoods by J. Carron, G. Fabbian and A. Lewis 
 
