@@ -11,7 +11,7 @@ setup(name="planckpr4lensing",
       license='LGPL',
       description='External Cobaya likelihood package: Planck PR4(NPIPE) lensing',
       zip_safe=False,  # set to false if you want to easily access bundled package data files
-      packages=['planckpr4lensing', 'planckpr4lensing.tests'],
+      packages=['planckpr4lensing', 'planckpr4lensing.tests', 'planckpr4lensing.iswlens_jtliks'],
       package_data={'planckpr4lensing': ['*.yaml', '*.bibtex', 'data_pr4/*', 'data_pr4/**/*']},
       install_requires=['cobaya>=2.0.5'],
       test_suite='planckpr4lensing.tests',
