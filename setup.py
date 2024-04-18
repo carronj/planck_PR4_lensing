@@ -1,10 +1,10 @@
 from setuptools import setup
-from planckpr4lensing import __author__, __version__
 import os
 
 file_dir = os.path.abspath(os.path.dirname(__file__))
 os.chdir(file_dir)
 
+exec(open('planckpr4lensing/_version.py').read())
 setup(name="planckpr4lensing",
       version=__version__,
       author=__author__,
