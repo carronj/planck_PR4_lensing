@@ -1,8 +1,11 @@
 try:
-    # more recent versions
-    from cobaya.likelihoods.base_classes import CMBlikes
-except ImportError:
-    from cobaya.likelihoods._base_classes import _CMBlikes as CMBlikes
+    from cobaya_cosmo.likelihoods.base_classes import CMBlikes
+except ModuleNotFoundError:
+    try:
+        # more recent versions
+        from cobaya.likelihoods.base_classes import CMBlikes
+    except ImportError:
+        from cobaya.likelihoods._base_classes import _CMBlikes as CMBlikes
 
 
 class PlanckPR4Lensing(CMBlikes):
